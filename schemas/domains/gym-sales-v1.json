@@ -1,0 +1,27 @@
+{
+  "version": "gym-sales-v1",
+  "task": "Identify the final membership sale outcome and concerns actually expressed by the customer, including concerns resolved later. Related concerns require separate direct evidence.",
+  "outcomes": {
+    "success": "The customer explicitly agrees to join.",
+    "failure": "The customer declines or never agrees to join."
+  },
+  "evidence_role": "customer",
+  "causes": {
+    "boredom": "the same exercises or routine become repetitive and boring.",
+    "motivation_dropoff": "inability to keep attending or stay committed after initial enthusiasm, independently of routine variety.",
+    "contract_lock": "objection to a fixed commitment, lock-in, or lack of flexibility.",
+    "contract_trap": "fear of quitting or not attending while still paying under a long contract.",
+    "cancellation_maze": "cancellation procedures are difficult, bureaucratic, or deliberately obstructive.",
+    "wasted_money": "paying for unused membership or sessions, without the specific long-contract trap.",
+    "hidden_fees": "registration, card, locker, or other charges beyond the advertised price.",
+    "price_gap": "a cheaper competing gym or explicit comparison of price and value.",
+    "commute_friction": "travel time, distance, or inconvenience getting to the gym.",
+    "no_time": "insufficient schedule time for training, independently of travel.",
+    "peak_congestion": "queues, overcrowding, or unavailable equipment at busy times.",
+    "changing_room": "discomfort with shared changing rooms, showers, or lack of privacy there.",
+    "judgment_fear": "fear of being watched, judged, embarrassed, or not fitting in.",
+    "equipment_confusion": "not knowing how to use specific machines or equipment.",
+    "no_plan": "not knowing what workout to do or how to structure a training session.",
+    "fitness_level": "feeling too unfit, inexperienced, weak, or physically unable to keep up."
+  }
+}

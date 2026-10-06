@@ -1,0 +1,12 @@
+# Definition profile only; copy to an ignored private deployment file.
+# Supply verified analysis/data/messaging images, source revision/hash,
+# request_uri, index_analysis_id, prepared_run_id and worker_a_canary_id.
+# Supply private IAM and sender/recipient values and a numeric secret version.
+# All run identities must match the authorized Foundation workload.
+deploy_analysis          = true
+deploy_data_compute      = true
+deploy_api               = true
+deploy_messaging_queues  = true
+deploy_messaging_compute = true
+provision_email_secret   = true
+enable_email             = true

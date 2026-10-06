@@ -1,0 +1,148 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "event",
+    "status",
+    "summary",
+    "quality_reasons",
+    "records_expected",
+    "records_valid",
+    "records_invalid",
+    "correct_outcomes",
+    "cause_f1",
+    "report_path"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "analysis.notification.v2"
+    },
+    "event": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_version",
+        "event_id",
+        "analysis_id",
+        "source_run_id",
+        "created_at",
+        "processing_status",
+        "quality_status",
+        "recipient_id",
+        "channel",
+        "template_version",
+        "report_uri",
+        "report_sha256"
+      ],
+      "properties": {
+        "schema_version": {
+          "type": "string",
+          "const": "analysis.completed.v1"
+        },
+        "event_id": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "analysis_id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9-]{0,62}$"
+        },
+        "source_run_id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9-]{0,62}$"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "processing_status": {
+          "type": "string",
+          "const": "completed"
+        },
+        "quality_status": {
+          "type": "string",
+          "enum": [
+            "pass",
+            "fail",
+            "not_evaluated"
+          ]
+        },
+        "recipient_id": {
+          "type": "string",
+          "const": "gym-sales-manager-demo"
+        },
+        "channel": {
+          "type": "string",
+          "const": "test_sink"
+        },
+        "template_version": {
+          "type": "string",
+          "const": "stakeholder-summary-v1"
+        },
+        "report_uri": {
+          "type": "string",
+          "pattern": "^gs://your-gcp-project-id-results/analysis/[a-z][a-z0-9-]{0,62}/report\\.json$"
+        },
+        "report_sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      }
+    },
+    "status": {
+      "type": "string",
+      "const": "delivered"
+    },
+    "summary": {
+      "type": "string",
+      "maxLength": 512
+    },
+    "quality_reasons": {
+      "type": "array",
+      "maxItems": 10,
+      "items": {
+        "type": "string",
+        "maxLength": 128
+      }
+    },
+    "records_expected": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 900
+    },
+    "records_valid": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 900
+    },
+    "records_invalid": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 900
+    },
+    "correct_outcomes": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 0,
+      "maximum": 900
+    },
+    "cause_f1": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "minimum": 0,
+      "maximum": 1
+    },
+    "report_path": {
+      "type": "string",
+      "pattern": "^/analyses/[a-z][a-z0-9-]{0,62}/report$"
+    }
+  }
+}

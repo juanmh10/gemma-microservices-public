@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Pinned model artifact v1",
+  "type": "object", "additionalProperties": false,
+  "required": ["model_id", "revision", "quantization", "vllm_version", "files"],
+  "properties": {
+    "model_id": {"type": "string", "minLength": 1},
+    "revision": {"type": "string", "minLength": 1},
+    "quantization": {"type": "string", "minLength": 1},
+    "vllm_version": {"type": "string", "minLength": 1},
+    "files": {
+      "type": "array", "minItems": 1,
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["path", "sha256"],
+        "properties": {
+          "path": {"type": "string", "minLength": 1},
+          "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+        }
+      }
+    }
+  }
+}

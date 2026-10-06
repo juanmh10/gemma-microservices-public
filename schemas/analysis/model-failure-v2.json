@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/gemma-pipeline/analysis/model-failure-v2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "analysis_id",
+    "category"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "analysis-model-failure-v2"
+    },
+    "analysis_id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]{0,62}$"
+    },
+    "category": {
+      "enum": [
+        "provider_http",
+        "provider_transport",
+        "model_deadline"
+      ]
+    },
+    "http_status": {
+      "type": "integer",
+      "minimum": 400,
+      "maximum": 599
+    },
+    "provider_status": {
+      "enum": [
+        "INVALID_ARGUMENT",
+        "UNAUTHENTICATED",
+        "PERMISSION_DENIED",
+        "NOT_FOUND",
+        "RESOURCE_EXHAUSTED",
+        "FAILED_PRECONDITION",
+        "ABORTED",
+        "OUT_OF_RANGE",
+        "UNIMPLEMENTED",
+        "INTERNAL",
+        "UNAVAILABLE",
+        "DEADLINE_EXCEEDED",
+        "CANCELLED",
+        "UNKNOWN"
+      ]
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "category": {
+            "const": "provider_http"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "http_status"
+        ]
+      },
+      "else": {
+        "not": {
+          "anyOf": [
+            {
+              "required": [
+                "http_status"
+              ]
+            },
+            {
+              "required": [
+                "provider_status"
+              ]
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

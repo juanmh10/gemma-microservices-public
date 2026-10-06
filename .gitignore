@@ -1,0 +1,61 @@
+# Agent metadata and workspace isolation (CRITICAL)
+.agents/
+
+# Terraform state, plans, and secrets
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfplan
+crash.log
+*.tfvars
+*.tfvars.json
+!*.tfvars.example
+.terraform.lock.hcl.backup
+
+# Environment variables and local secrets
+.env
+.env.*
+!.env.example
+
+# Python virtual environments, caches, and bytecode
+__pycache__/
+*.py[cod]
+*.pyc
+.venv/
+.ruff_cache/
+.pytest_cache/
+.cache/
+
+# Build artifacts, binaries, and test outputs
+coverage/
+dist/
+build/
+*.test
+*.out
+/pipeline
+/analysis
+/analytics
+/messaging
+/dataset-preparer
+
+# Heavy and private model / dataset / report assets
+models/
+results/
+diagram/
+remotion/
+powerbi/*.pbix
+*.pbix
+*.pbit
+*.parquet
+*.arrow
+*.safetensors
+*.gguf
+*.bin
+
+# Internal transitional documents
+docs/history/
+docs/mvp-transition.md
+
+# Operating System files
+.DS_Store
+Thumbs.db

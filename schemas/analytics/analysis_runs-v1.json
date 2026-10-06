@@ -1,0 +1,107 @@
+[
+  {
+    "name": "analysis_id",
+    "type": "STRING",
+    "mode": "REQUIRED"
+  },
+  {
+    "name": "source_run_id",
+    "type": "STRING",
+    "mode": "REQUIRED"
+  },
+  {
+    "name": "created_at",
+    "type": "TIMESTAMP",
+    "mode": "REQUIRED"
+  },
+  {
+    "name": "schema_version",
+    "type": "STRING",
+    "mode": "REQUIRED"
+  },
+  {
+    "name": "report_sha256",
+    "type": "STRING",
+    "mode": "REQUIRED"
+  },
+  {
+    "name": "report_uri",
+    "type": "STRING",
+    "mode": "REQUIRED"
+  },
+  {
+    "name": "quality_status",
+    "type": "STRING",
+    "mode": "REQUIRED"
+  },
+  {
+    "name": "records_expected",
+    "type": "INTEGER",
+    "mode": "REQUIRED"
+  },
+  {
+    "name": "records_valid",
+    "type": "INTEGER",
+    "mode": "REQUIRED"
+  },
+  {
+    "name": "records_invalid",
+    "type": "INTEGER",
+    "mode": "REQUIRED"
+  },
+  {
+    "name": "correct_outcomes",
+    "type": "INTEGER",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "schema_valid_rate",
+    "type": "FLOAT",
+    "mode": "REQUIRED"
+  },
+  {
+    "name": "outcome_accuracy",
+    "type": "FLOAT",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "cause_f1",
+    "type": "FLOAT",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "model",
+    "type": "STRING",
+    "mode": "REQUIRED"
+  },
+  {
+    "name": "model_mode",
+    "type": "STRING",
+    "mode": "REQUIRED"
+  },
+  {
+    "name": "model_location",
+    "type": "STRING",
+    "mode": "REQUIRED"
+  },
+  {
+    "name": "model_version",
+    "type": "STRING",
+    "mode": "REQUIRED"
+  },
+  {
+    "name": "input_tokens",
+    "type": "INTEGER",
+    "mode": "REQUIRED"
+  },
+  {
+    "name": "output_tokens",
+    "type": "INTEGER",
+    "mode": "REQUIRED"
+  },
+  {
+    "name": "provenance",
+    "type": "JSON",
+    "mode": "REQUIRED"
+  }
+]

@@ -1,0 +1,13 @@
+# Bounded 900-record definition profile. Copy to an ignored private file.
+# Explicitly supply run_id, rtx_canary_id, image digests, source revisions and
+# required private configuration. Deployment does not authorize execution.
+deploy_jobs               = true
+deploy_preparer           = true
+deploy_l4                 = false
+retain_worker_network     = true
+pilot_records             = 900
+preparer_shards           = 3
+prompt_version            = "worker-a-v2"
+require_rtx_compile_cache = true
+export_rtx_compile_cache  = false
+rtx_canary_tasks          = 3

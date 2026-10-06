@@ -1,0 +1,274 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/gemma-pipeline/analysis/request-v2",
+  "title": "Part 2 request v2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "mode",
+    "analysis_id",
+    "source_run_id",
+    "task_index",
+    "source_image",
+    "manifest",
+    "shard",
+    "marker",
+    "chunks",
+    "rules",
+    "model",
+    "location",
+    "prompt_version",
+    "output_prefix",
+    "model_mode",
+    "additional_tasks"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "analysis-v2"
+    },
+    "mode": {
+      "enum": [
+        "evaluate",
+        "analyze"
+      ]
+    },
+    "analysis_id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]{0,62}$"
+    },
+    "source_run_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "task_index": {
+      "const": 0
+    },
+    "source_image": {
+      "type": "string",
+      "pattern": "^us-central1-docker\\.pkg\\.dev/your-gcp-project-id/pipeline/worker-a@sha256:[a-f0-9]{64}$"
+    },
+    "manifest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "uri",
+        "sha256"
+      ],
+      "properties": {
+        "uri": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      }
+    },
+    "shard": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "uri",
+        "sha256"
+      ],
+      "properties": {
+        "uri": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      }
+    },
+    "marker": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "uri",
+        "sha256"
+      ],
+      "properties": {
+        "uri": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      }
+    },
+    "chunks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "uri",
+          "sha256"
+        ],
+        "properties": {
+          "uri": {
+            "type": "string",
+            "minLength": 1
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          }
+        }
+      },
+      "maxItems": 16,
+      "minItems": 1
+    },
+    "truth": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "uri",
+        "sha256"
+      ],
+      "properties": {
+        "uri": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      }
+    },
+    "rules": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "version",
+        "min_valid_rate",
+        "min_outcome_accuracy",
+        "min_cause_f1"
+      ],
+      "properties": {
+        "version": {
+          "const": "quality-v1"
+        },
+        "min_valid_rate": {
+          "const": 0.99
+        },
+        "min_outcome_accuracy": {
+          "const": 0.98
+        },
+        "min_cause_f1": {
+          "const": 0.9
+        }
+      }
+    },
+    "model": {
+      "const": "gemini-3.5-flash-lite"
+    },
+    "location": {
+      "const": "us"
+    },
+    "prompt_version": {
+      "enum": [
+        "worker-b-v1",
+        "worker-b-v2"
+      ]
+    },
+    "output_prefix": {
+      "type": "string",
+      "minLength": 1
+    },
+    "model_mode": {
+      "enum": [
+        "fake",
+        "vertex"
+      ]
+    },
+    "additional_tasks": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "task_index",
+          "shard",
+          "marker",
+          "chunks"
+        ],
+        "properties": {
+          "task_index": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2
+          },
+          "shard": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "uri",
+              "sha256"
+            ],
+            "properties": {
+              "uri": {
+                "type": "string",
+                "minLength": 1
+              },
+              "sha256": {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              }
+            }
+          },
+          "marker": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "uri",
+              "sha256"
+            ],
+            "properties": {
+              "uri": {
+                "type": "string",
+                "minLength": 1
+              },
+              "sha256": {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              }
+            }
+          },
+          "chunks": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "uri",
+                "sha256"
+              ],
+              "properties": {
+                "uri": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "sha256": {
+                  "type": "string",
+                  "pattern": "^[a-f0-9]{64}$"
+                }
+              }
+            },
+            "maxItems": 16,
+            "minItems": 1
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "event_id",
+    "analysis_id",
+    "source_run_id",
+    "created_at",
+    "processing_status",
+    "quality_status",
+    "recipient_id",
+    "channel",
+    "template_version",
+    "report_uri",
+    "report_sha256"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "analysis.completed.v1"
+    },
+    "event_id": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "analysis_id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]{0,62}$"
+    },
+    "source_run_id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]{0,62}$"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "processing_status": {
+      "type": "string",
+      "const": "completed"
+    },
+    "quality_status": {
+      "type": "string",
+      "enum": [
+        "pass",
+        "fail",
+        "not_evaluated"
+      ]
+    },
+    "recipient_id": {
+      "type": "string",
+      "const": "gym-sales-manager-demo"
+    },
+    "channel": {
+      "type": "string",
+      "const": "test_sink"
+    },
+    "template_version": {
+      "type": "string",
+      "const": "stakeholder-summary-v1"
+    },
+    "report_uri": {
+      "type": "string",
+      "pattern": "^gs://your-gcp-project-id-results/analysis/[a-z][a-z0-9-]{0,62}/report\\.json$"
+    },
+    "report_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    }
+  }
+}

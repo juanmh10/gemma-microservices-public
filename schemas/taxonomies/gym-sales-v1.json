@@ -1,0 +1,10 @@
+{
+  "version": "gym-sales-v1",
+  "source": "elg4/Gym_Salesman_Dataset hidden_objection_ids",
+  "codes": [
+    "boredom", "cancellation_maze", "changing_room", "commute_friction",
+    "contract_lock", "contract_trap", "equipment_confusion", "fitness_level",
+    "hidden_fees", "judgment_fear", "motivation_dropoff", "no_plan",
+    "no_time", "peak_congestion", "price_gap", "wasted_money"
+  ]
+}

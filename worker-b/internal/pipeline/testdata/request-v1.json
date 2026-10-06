@@ -1,0 +1,45 @@
+{
+  "schema_version": "analysis-v1",
+  "mode": "analyze",
+  "analysis_id": "part2-v2-cached-test-01",
+  "source_run_id": "pilot-004",
+  "task_index": 0,
+  "source_image": "us-central1-docker.pkg.dev/your-gcp-project-id/pipeline/worker-a@sha256:581ba5a7ec8e3061f22306ead9c43a5315ef0048eea601ea5e1afddda64c1312",
+  "manifest": {
+    "uri": "gs://your-gcp-project-id-prepared/runs/pilot-004/manifest.json",
+    "sha256": "20d39b1d1e5720e1a3d4caa87a3e47e38f6d3dc1d1242ce81b301796907128df"
+  },
+  "shard": {
+    "uri": "gs://your-gcp-project-id-prepared/runs/pilot-004/shards/shard-00000.jsonl.zst",
+    "sha256": "4b6c6eaff65f898f7f6086df066f5c9e9d690cc282bcc18919034e65a3697052"
+  },
+  "marker": {
+    "uri": "gs://your-gcp-project-id-results/canary/reject-diag-cached-300-20260930/runs/pilot-004/worker-a/rtx6000/task-00000/_SUCCESS.json",
+    "sha256": "e6dab99f27a09435acf469e0afa43830f36ee8f4a8c33c682f3ea5e7548f2fb0"
+  },
+  "chunks": [
+    {
+      "uri": "gs://your-gcp-project-id-results/canary/reject-diag-cached-300-20260930/runs/pilot-004/worker-a/rtx6000/task-00000/chunk-000000.parquet",
+      "sha256": "e786e23034c74f994a5028d78ed27a9218f2b67a8c2d7aa2f3da462169e9f278"
+    },
+    {
+      "uri": "gs://your-gcp-project-id-results/canary/reject-diag-cached-300-20260930/runs/pilot-004/worker-a/rtx6000/task-00000/chunk-000001.parquet",
+      "sha256": "9bdb52165343b63b137e56c060c841a1e464fe75b7bdcb29af4265cda385966a"
+    }
+  ],
+  "rules": {
+    "version": "quality-v1",
+    "min_valid_rate": 0.99,
+    "min_outcome_accuracy": 0.98,
+    "min_cause_f1": 0.9
+  },
+  "model": "gemini-3.5-flash-lite",
+  "location": "us",
+  "prompt_version": "worker-b-v1",
+  "output_prefix": "gs://your-gcp-project-id-results/analysis",
+  "truth": {
+    "uri": "gs://your-gcp-project-id-ground-truth/runs/pilot-004/labels.parquet",
+    "sha256": "ec3cacb32d58aee2c869ff5ad5fb1117b95b40b2457eac112c757d5af2373355"
+  },
+  "model_mode": "vertex"
+}

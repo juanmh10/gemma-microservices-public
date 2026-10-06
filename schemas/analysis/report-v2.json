@@ -1,0 +1,417 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/gemma-pipeline/analysis/report-v2",
+  "title": "Part 2 report v2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "analysis_id",
+    "created_at",
+    "request_sha256",
+    "metrics",
+    "decision",
+    "narrative",
+    "model",
+    "location",
+    "prompt_version",
+    "prompt_sha256",
+    "image_digest",
+    "source_sha256",
+    "source_revision",
+    "model_mode",
+    "usage",
+    "duration_ms"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "analysis-v2"
+    },
+    "analysis_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "request_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "metrics": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_version",
+        "evaluator_version",
+        "source_run_id",
+        "manifest_sha256",
+        "source_image",
+        "input_fingerprint",
+        "records_expected",
+        "source_records",
+        "records_valid",
+        "records_invalid",
+        "correct_outcomes",
+        "schema_valid_rate",
+        "outcome_accuracy",
+        "cause_precision",
+        "cause_recall",
+        "cause_f1",
+        "per_cause",
+        "evidence"
+      ],
+      "properties": {
+        "schema_version": {
+          "const": "analysis-v2"
+        },
+        "evaluator_version": {
+          "const": "benchmark-v1"
+        },
+        "source_run_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "manifest_sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "source_image": {
+          "type": "string",
+          "minLength": 1
+        },
+        "input_fingerprint": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "records_expected": {
+          "type": "integer",
+          "minimum": 900,
+          "maximum": 900
+        },
+        "source_records": {
+          "type": "integer",
+          "minimum": 900,
+          "maximum": 900
+        },
+        "records_valid": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "records_invalid": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "correct_outcomes": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "schema_valid_rate": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "outcome_accuracy": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 1
+        },
+        "cause_precision": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 1
+        },
+        "cause_recall": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 1
+        },
+        "cause_f1": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 1
+        },
+        "per_cause": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "true_positive",
+              "false_positive",
+              "false_negative",
+              "precision",
+              "recall",
+              "f1"
+            ],
+            "properties": {
+              "true_positive": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "false_positive": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "false_negative": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "precision": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "recall": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "f1": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              }
+            }
+          }
+        },
+        "evidence": {
+          "type": "array",
+          "maxItems": 10,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "record_id",
+              "cause_code",
+              "turn_id",
+              "text"
+            ],
+            "properties": {
+              "record_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "cause_code": {
+                "type": "string",
+                "minLength": 1
+              },
+              "turn_id": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "text": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 1024
+              }
+            }
+          }
+        }
+      }
+    },
+    "decision": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "rules",
+        "reasons"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "pass",
+            "fail",
+            "not_evaluated"
+          ]
+        },
+        "rules": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "version",
+            "min_valid_rate",
+            "min_outcome_accuracy",
+            "min_cause_f1"
+          ],
+          "properties": {
+            "version": {
+              "const": "quality-v1"
+            },
+            "min_valid_rate": {
+              "const": 0.99
+            },
+            "min_outcome_accuracy": {
+              "const": 0.98
+            },
+            "min_cause_f1": {
+              "const": 0.9
+            }
+          }
+        },
+        "reasons": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "maxItems": 10,
+          "minItems": 0
+        }
+      }
+    },
+    "narrative": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "summary",
+        "findings",
+        "recommendations",
+        "limitations"
+      ],
+      "properties": {
+        "summary": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 4000
+        },
+        "findings": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "code",
+              "observation",
+              "metric_refs"
+            ],
+            "properties": {
+              "code": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9-]{0,62}$"
+              },
+              "observation": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 2000
+              },
+              "metric_refs": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "maxItems": 10,
+                "minItems": 1
+              }
+            }
+          },
+          "maxItems": 10,
+          "minItems": 0
+        },
+        "recommendations": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 2000
+          },
+          "maxItems": 10,
+          "minItems": 0
+        },
+        "limitations": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 2000
+          },
+          "maxItems": 10,
+          "minItems": 1
+        }
+      }
+    },
+    "model": {
+      "const": "gemini-3.5-flash-lite"
+    },
+    "location": {
+      "const": "us"
+    },
+    "prompt_version": {
+      "enum": [
+        "worker-b-v1",
+        "worker-b-v2"
+      ]
+    },
+    "prompt_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "image_digest": {
+      "type": "string"
+    },
+    "source_sha256": {
+      "type": "string"
+    },
+    "source_revision": {
+      "type": "string"
+    },
+    "model_mode": {
+      "enum": [
+        "fake",
+        "vertex"
+      ]
+    },
+    "usage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "requests",
+        "input_tokens",
+        "output_tokens",
+        "model_version"
+      ],
+      "properties": {
+        "requests": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 3
+        },
+        "input_tokens": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 24000
+        },
+        "output_tokens": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 6000
+        },
+        "model_version": {
+          "type": "string"
+        }
+      }
+    },
+    "duration_ms": {
+      "type": "integer",
+      "minimum": 0
+    }
+  }
+}

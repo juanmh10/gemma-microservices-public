@@ -1,0 +1,15 @@
+{
+  "version": "support-resolution-v1",
+  "task": "Determine whether the reported customer issue was resolved and identify issues explicitly reported by the customer. An agent suggesting a solution is not confirmation that it worked.",
+  "outcomes": {
+    "success": "The customer explicitly confirms that the reported issue is resolved by the end of the conversation.",
+    "failure": "The issue remains unresolved, the customer says a fix failed, or resolution is not confirmed."
+  },
+  "evidence_role": "customer",
+  "causes": {
+    "authentication": "The customer reports inability to sign in or authenticate.",
+    "connectivity": "The customer reports a network or connection failure.",
+    "billing": "The customer reports an incorrect charge or billing discrepancy.",
+    "data_loss": "The customer reports previously saved data missing or lost."
+  }
+}

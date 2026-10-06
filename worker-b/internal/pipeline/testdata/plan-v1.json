@@ -1,0 +1,15 @@
+{
+  "schema_version": "pipeline-plan-v1",
+  "project": "your-gcp-project-id",
+  "region": "us-central1",
+  "analysis_id": "part2-v2-cached-test-01",
+  "analysis_mode": "reuse",
+  "expected_report_sha256": "0d2ed56f3b55ed33cd1ddac003a291a3ab1fc5a9c3b9ae6f797b4ffe4c29acea",
+  "data_image": "us-central1-docker.pkg.dev/your-gcp-project-id/pipeline/analytics@sha256:77a97f0c9d774b0c021d97be18361e36918d4202de925903a94e188fef6acd9b",
+  "messaging_image": "us-central1-docker.pkg.dev/your-gcp-project-id/pipeline/messaging@sha256:13a680ce0c43493b24fa0b622367d264eef252f2b81207c60c09ed7db66994b5",
+  "notifier_revision": "projects/your-gcp-project-id/locations/us-central1/services/poc-gemma-notifier/revisions/poc-gemma-notifier-00006-8xc",
+  "secret_version": "1",
+  "index_attempt": "initial",
+  "republish": false,
+  "require_email": true
+}

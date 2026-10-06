@@ -1,0 +1,190 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/gemma-pipeline/analysis/metrics-v1",
+  "title": "Part 2 metrics v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "evaluator_version",
+    "source_run_id",
+    "manifest_sha256",
+    "source_image",
+    "input_fingerprint",
+    "records_expected",
+    "source_records",
+    "records_valid",
+    "records_invalid",
+    "correct_outcomes",
+    "schema_valid_rate",
+    "outcome_accuracy",
+    "cause_precision",
+    "cause_recall",
+    "cause_f1",
+    "per_cause",
+    "evidence"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "analysis-v1"
+    },
+    "evaluator_version": {
+      "const": "benchmark-v1"
+    },
+    "source_run_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "manifest_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "source_image": {
+      "type": "string",
+      "minLength": 1
+    },
+    "input_fingerprint": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "records_expected": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 300
+    },
+    "source_records": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 900
+    },
+    "records_valid": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "records_invalid": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "correct_outcomes": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 0
+    },
+    "schema_valid_rate": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "outcome_accuracy": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "minimum": 0,
+      "maximum": 1
+    },
+    "cause_precision": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "minimum": 0,
+      "maximum": 1
+    },
+    "cause_recall": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "minimum": 0,
+      "maximum": 1
+    },
+    "cause_f1": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "minimum": 0,
+      "maximum": 1
+    },
+    "per_cause": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "true_positive",
+          "false_positive",
+          "false_negative",
+          "precision",
+          "recall",
+          "f1"
+        ],
+        "properties": {
+          "true_positive": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "false_positive": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "false_negative": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "precision": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "recall": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "f1": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          }
+        }
+      }
+    },
+    "evidence": {
+      "type": "array",
+      "maxItems": 10,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "record_id",
+          "cause_code",
+          "turn_id",
+          "text"
+        ],
+        "properties": {
+          "record_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "cause_code": {
+            "type": "string",
+            "minLength": 1
+          },
+          "turn_id": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "text": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1024
+          }
+        }
+      }
+    }
+  }
+}

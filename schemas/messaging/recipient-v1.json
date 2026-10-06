@@ -1,0 +1,8 @@
+{
+  "schema_version": "recipient-v1",
+  "recipient_id": "gym-sales-manager-demo",
+  "role": "Fictional gym sales manager",
+  "channel": "test_sink",
+  "template_version": "stakeholder-summary-v1",
+  "policy": "all_completed"
+}

@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/gemma-pipeline/analysis/model-failure-v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "analysis_id",
+    "category"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "analysis-model-failure-v1"
+    },
+    "analysis_id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]{0,62}$"
+    },
+    "category": {
+      "enum": [
+        "adk_execution",
+        "missing_final_response",
+        "narrative_json",
+        "narrative_bounds",
+        "finding_bounds",
+        "metric_reference",
+        "narrative_text"
+      ]
+    }
+  }
+}

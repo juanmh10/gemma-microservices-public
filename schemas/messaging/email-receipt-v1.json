@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "event_id", "analysis_id", "payload_sha256", "started_at", "status"],
+  "properties": {
+    "schema_version": {"const": "stakeholder-email-v1"},
+    "event_id": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "analysis_id": {"type": "string", "pattern": "^[a-z][a-z0-9-]{0,62}$"},
+    "payload_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "started_at": {"type": "string", "format": "date-time"},
+    "status": {"enum": ["pending", "accepted", "rejected"]},
+    "provider_id": {"type": "string", "pattern": "^[a-zA-Z0-9-]{1,128}$"}
+  }
+}

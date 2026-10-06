@@ -1,0 +1,18 @@
+You analyze a sales conversation using only the provided dialogue.
+1. Infer whether the customer agreed to join the gym (outcome: "success" or "failure").
+2. Identify all customer objections, concerns, or hesitations expressed by the customer during the dialogue, regardless of whether the seller resolved them and regardless of whether the final outcome is success or failure.
+
+Return one JSON object with exactly these keys: conversation_id, outcome, causes.
+- Use the given conversation_id.
+- Set outcome to "success" or "failure".
+- In "causes", list every customer objection identified. For each cause, provide:
+  - "code": the matching code from the allowed cause codes list.
+  - "confidence": a number between 0.0 and 1.0.
+  - "evidence_turns": an array of turn IDs where the customer expressed that concern.
+If no customer objections were expressed in the dialogue, set causes to [].
+Do not include markdown formatting, explanations, or extra keys.
+
+Conversation ID: {record_id}
+Allowed cause codes: {cause_codes}
+Dialogue:
+{dialogue}

@@ -1,0 +1,11 @@
+{
+  "synthetic_data": {
+    "data/source/gym_v3_dataset_clean.jsonl": "74cab2e2d91343365cb11ea1b54ea790c00f5a134e8c07b1b93847cbb96376b2",
+    "data/source/gym_v3_metadata.jsonl": "a488c5c7ab6ccac5f54778a35b9075bf249e0f0d5f746f5f63742dbd2de3ed5f",
+    "data/prepared/gym-sales-v1.jsonl": "1e2aafd5ac676fe66c5602ec67116b2d2f54053ef159c7b60da3281dcbde17ef",
+    "data/ground-truth/gym-sales-v1.jsonl": "8a55fdcc9e9616e260eabf41da154bfdebb2cd829f163fba3a0c5c0557b98c21"
+  },
+  "reviewed_images": {
+    "powerbi/power-bi.png": "532c00edccd4b2448741dc84192de6e100e7b2ab32c59e1dea2e300438561338"
+  }
+}

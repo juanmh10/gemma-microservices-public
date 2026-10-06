@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "message_id",
+    "payload_sha256",
+    "status",
+    "reason"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "analysis.completed.v1"
+    },
+    "message_id": {
+      "type": "string",
+      "pattern": "^[0-9]{1,64}$"
+    },
+    "payload_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "status": {
+      "type": "string",
+      "const": "rejected"
+    },
+    "reason": {
+      "type": "string",
+      "const": "invalid_event"
+    }
+  }
+}

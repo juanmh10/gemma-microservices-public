@@ -1,0 +1,9 @@
+# Configuration checklist; copy to an ignored private file and complete it.
+# Required: explicit run_id and pilot_records (the legacy population variable).
+# Existing deployments must retain their current private flags and identifiers.
+# Enabling Jobs also requires verified image digests, git_sha and private quota
+# contact configuration. Keep L4 disabled for the MVP.
+# Use the full profile for a separately approved three-task 900-record workload;
+# explicitly supply rtx_canary_id, prompt version and matching cached images.
+deploy_jobs = false
+deploy_l4   = false

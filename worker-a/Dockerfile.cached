@@ -1,0 +1,6 @@
+# Build only from the exact worker image used by the GPU bootstrap task.
+ARG WORKER_IMAGE
+FROM ${WORKER_IMAGE}
+COPY cache/ /root/.cache/vllm/torch_compile_cache/
+COPY compile-cache-manifest.json /app/compile-cache-manifest.json
+ENV REQUIRE_COMPILE_CACHE=1

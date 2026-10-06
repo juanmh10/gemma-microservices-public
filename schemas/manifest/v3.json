@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Domain-configured dataset manifest v3",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "run_id",
+    "dataset_version",
+    "schema_version",
+    "prompt_version",
+    "records_total",
+    "shards",
+    "domain_uri",
+    "domain_version",
+    "domain_sha256"
+  ],
+  "properties": {
+    "run_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "dataset_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "schema_version": {
+      "const": "conversation-analysis-v1"
+    },
+    "prompt_version": {
+      "const": "worker-a-v3"
+    },
+    "records_total": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "shards": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "index",
+          "uri",
+          "records",
+          "sha256"
+        ],
+        "properties": {
+          "index": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "uri": {
+            "type": "string",
+            "minLength": 1
+          },
+          "records": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          }
+        }
+      }
+    },
+    "domain_uri": {
+      "type": "string",
+      "minLength": 1
+    },
+    "domain_version": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]{2,63}$"
+    },
+    "domain_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    }
+  }
+}

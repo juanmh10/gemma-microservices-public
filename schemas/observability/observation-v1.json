@@ -1,0 +1,152 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Pipeline observation v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "component",
+    "stage",
+    "started_at",
+    "completed_at",
+    "elapsed_us",
+    "status",
+    "sequence"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "pipeline-observation-v1"
+    },
+    "component": {
+      "enum": [
+        "analysis",
+        "storage",
+        "index",
+        "messaging",
+        "api",
+        "pipeline"
+      ]
+    },
+    "stage": {
+      "enum": [
+        "run",
+        "evaluation",
+        "model_generation",
+        "model_rpc",
+        "read",
+        "create",
+        "query",
+        "publication",
+        "publish_rpc",
+        "notification",
+        "email",
+        "email_rpc",
+        "request",
+        "launch",
+        "observe",
+        "lifecycle",
+        "initialization"
+      ]
+    },
+    "analysis_id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]{0,62}$"
+    },
+    "event_id": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "model_mode": {
+      "enum": [
+        "fake",
+        "vertex"
+      ]
+    },
+    "job_stage": {
+      "enum": [
+        "worker-a",
+        "analysis",
+        "index",
+        "publish"
+      ]
+    },
+    "execution_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9-]{1,80}$"
+    },
+    "elapsed_us": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "status": {
+      "enum": [
+        "ok",
+        "error",
+        "missing",
+        "exists"
+      ]
+    },
+    "sequence": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 128
+    },
+    "event_limit_reached": {
+      "type": "boolean"
+    },
+    "bytes": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "input_tokens": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 24000
+    },
+    "output_tokens": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 6000
+    },
+    "started_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "completed_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "remote_created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "remote_started_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "remote_completed_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "process_cpu_delta_us": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "process_peak_rss_bytes": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "cgroup_memory_current_bytes": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "cgroup_memory_peak_bytes": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "source_published_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

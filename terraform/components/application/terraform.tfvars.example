@@ -1,0 +1,17 @@
+# Configuration checklist; copy to an ignored private file and complete it.
+# Required: analysis_image, source_revision, source_sha256, request_uri,
+# index_analysis_id and prepared_run_id. Use verified immutable artifacts and
+# explicit workload identities. No historical identity or example digest is supplied.
+# Existing deployments must retain their current private values and flags.
+# Power BI access is independent of compute; configure its user/group privately.
+powerbi_reader = null
+vertex_location = "us"
+deploy_analysis = false
+deploy_data_compute = false
+deploy_api = false
+deploy_messaging_queues = false
+deploy_messaging_compute = false
+provision_email_secret = false
+enable_email = false
+# When enabling compute, supply verified data/messaging images and private IAM.
+# Email requires private sender/recipient/domain and a numeric secret version.
