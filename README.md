@@ -6,6 +6,16 @@ Go handles dataset preparation, pipeline orchestration, and backend microservice
 
 ## Architecture Overview
 
+![Gemma Lead Processing Pipeline Architecture Diagram](docs/lead_pipeline_animation.gif)
+
+The infrastructure orchestrates an end-to-end, batch-processing and causal analysis lifecycle across Google Cloud Platform, structured into five synchronized operational phases:
+
+1. **Ingest & Prepare**: The Go Dataset Preparer Job (`poc-gemma-preparer`) partitions raw conversation leads into balanced Parquet shards and strictly isolates evaluation ground truth to prevent downstream leakage.
+2. **Worker A (Cloud Run GPU Inference)**: Accelerated batch classification powered by Gemma on NVIDIA RTX PRO 6000 Ada (48GB GDDR6 ECC), writing intermediate Parquet prediction chunks and task completion markers to Cloud Storage.
+3. **Worker B (Cloud Run CPU Analysis & Reasoning)**: A containerized Go analysis worker (`poc-gemma-analysis`) running a zero-leak evaluator and a Go ADK agent with Vertex AI (Gemini 3.5 Flash-Lite) for automated causal loss attribution and narrative reporting.
+4. **Analytical Storage & BI (BigQuery & Power BI)**: An idempotent Cloud Run Index Job performs transactional `MERGE` indexing into day-partitioned BigQuery tables, exposed via an IAM-authenticated Cloud Run API and connected to Power BI through the BigQuery Storage API.
+5. **Pub/Sub Event Bus & Multi-Channel Delivery**: A Cloud Run Publisher Job emits verified `analysis.completed.v1` events to a Pub/Sub topic with Dead-Letter Queue (DLQ), triggering the Cloud Run Notifier service to dispatch atomic test receipts and stakeholder executive notifications.
+
 ```
 [ Conversation Data ]
          │

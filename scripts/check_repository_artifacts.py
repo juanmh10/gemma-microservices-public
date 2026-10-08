@@ -17,7 +17,10 @@ APPROVED_PATHS = {
         "data/prepared/gym-sales-v1.jsonl",
         "data/ground-truth/gym-sales-v1.jsonl",
     },
-    "reviewed_images": {"powerbi/power-bi.png"},
+    "reviewed_images": {
+        "docs/lead_pipeline_animation.gif",
+        "powerbi/power-bi.png",
+    },
 }
 PRIVATE_PARTS = {".git", ".terraform", ".venv", "results", "models", "__pycache__"}
 PRIVATE_SUFFIXES = {

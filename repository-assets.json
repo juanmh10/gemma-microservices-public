@@ -6,6 +6,7 @@
     "data/ground-truth/gym-sales-v1.jsonl": "8a55fdcc9e9616e260eabf41da154bfdebb2cd829f163fba3a0c5c0557b98c21"
   },
   "reviewed_images": {
-    "powerbi/power-bi.png": "532c00edccd4b2448741dc84192de6e100e7b2ab32c59e1dea2e300438561338"
+    "powerbi/power-bi.png": "532c00edccd4b2448741dc84192de6e100e7b2ab32c59e1dea2e300438561338",
+    "docs/lead_pipeline_animation.gif": "80bab7917adb7f72af2258581a967d9a9111cb921afa4ab4859432c4e1492f25"
   }
 }
